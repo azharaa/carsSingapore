@@ -13,6 +13,7 @@ func main() {
 	omvS := flag.String("omv", "", "Enter the vehical's omv ")
 	priceS := flag.String("price", "", "Enter the vehical's price ")
 	roiS := flag.String("roi", "", "Enter the bank's roi ")
+	ccS := flag.String("cc", "", "Enter the CC capacity of the Engine")
 
 	flag.Parse()
 
@@ -37,6 +38,7 @@ func main() {
 	}
 	omv, _ := strconv.ParseInt(*omvS, 10, 0)
 	price, _ := strconv.ParseInt(*priceS, 10, 0)
+	cc, _ := strconv.ParseInt(*ccS, 10, 0)
 	roi, _ := strconv.ParseFloat(*roiS, 32)
 
 	monthsLeft := core.ComputeMonthsLeft(*dateOfRegisteration, *todaysDate)
@@ -44,7 +46,8 @@ func main() {
 	parf := core.ComputeParf(int(omv), *dateOfRegisteration)
 	emi, down, loan := core.ComputeEMI(monthsLeft, int(price), float32(roi))
 	dep := core.ComputeDepriciation((down + loan), parf, monthsLeft)
+	rt := core.ComputeRoadTax(int(cc))
 
-	log.Printf("Down Payement %d : Get Back  %d : EMI %d : Depericiation %d : Months Left: %d", down, parf, emi, dep, monthsLeft)
+	log.Printf("Down Payement %d : Get Back  %d : EMI %d : Depericiation %d : Months Left: %d, Road Tax: %f", down, parf, emi, dep, monthsLeft, rt)
 
 }

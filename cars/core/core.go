@@ -67,3 +67,15 @@ func ComputeDepriciation(cost int, parf int, monthsLeft int) int {
 	effectiveValue := cost - parf
 	return effectiveValue / monthsLeft
 }
+
+func ComputeRoadTax(cc int) float32 {
+	var halfYearly float32
+	if cc <= 1600 {
+		halfYearly = (250.00 + .375*(float32(cc)-1000.00)) * .782
+	} else if cc <= 3000 {
+		halfYearly = (475.00 + 0.75*(float32(cc)-1600.00)) * 0.782
+	} else {
+		halfYearly = (1525.00 + (float32(cc) - 1600.00)) * 0.782
+	}
+	return halfYearly * 2.00
+}
