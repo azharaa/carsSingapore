@@ -2,7 +2,7 @@ package main
 
 import (
 	"flag"
-	core "github/cars/core"
+	core "github.com/azharaa/carsSingapore/cars/core"
 	"log"
 	"strconv"
 )
